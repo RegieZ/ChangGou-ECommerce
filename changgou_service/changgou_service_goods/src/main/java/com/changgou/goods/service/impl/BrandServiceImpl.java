@@ -28,4 +28,13 @@ public class BrandServiceImpl implements BrandService {
     public Brand findById(Integer id){
         return  brandMapper.selectByPrimaryKey(id);
     }
+
+    /**
+     * 增加
+     * @param brand
+     */
+    @Override
+    public void add(Brand brand){
+        brandMapper.insertSelective(brand);
+    }
 }

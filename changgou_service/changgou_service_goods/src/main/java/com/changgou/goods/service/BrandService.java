@@ -18,4 +18,10 @@ public interface BrandService {
      * @return
      */
     public Brand findById(Integer id);
+
+    /***
+     * 新增品牌
+     * @param brand
+     */
+    public void add(Brand brand);
 }
