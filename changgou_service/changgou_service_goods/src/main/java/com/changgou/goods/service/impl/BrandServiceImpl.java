@@ -18,4 +18,14 @@ public class BrandServiceImpl implements BrandService {
     public List<Brand> findAll() {
         return brandMapper.selectAll();
     }
+
+    /**
+     * 根据ID查询
+     * @param id
+     * @return
+     */
+    @Override
+    public Brand findById(Integer id){
+        return  brandMapper.selectByPrimaryKey(id);
+    }
 }

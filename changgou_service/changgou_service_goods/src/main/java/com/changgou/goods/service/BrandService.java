@@ -11,4 +11,11 @@ public interface BrandService {
      * @return
      */
     public List<Brand> findAll();
+
+    /**
+     * 根据ID查询
+     * @param id
+     * @return
+     */
+    public Brand findById(Integer id);
 }
