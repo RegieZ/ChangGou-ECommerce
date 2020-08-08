@@ -14,6 +14,7 @@ public interface BrandService {
 
     /**
      * 根据ID查询
+     *
      * @param id
      * @return
      */
@@ -30,4 +31,10 @@ public interface BrandService {
      * @param brand
      */
     public void update(Brand brand);
+
+    /***
+     * 删除品牌
+     * @param id
+     */
+    public void delete(Integer id);
 }
