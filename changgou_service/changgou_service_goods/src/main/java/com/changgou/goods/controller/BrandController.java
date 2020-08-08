@@ -99,7 +99,7 @@ public class BrandController {
      * @param size 每页个数
      * @return
      */
-    @GetMapping(value = "/search/{page}/{size}")
+    @GetMapping(value = "/search1/{page}/{size}")
     public Result findPage(@PathVariable int page, @PathVariable int size) {
         Page<Brand> pageList = brandService.findPage(page, size);
         PageResult pageResult = new PageResult(pageList.getTotal(), pageList.getResult());
@@ -114,7 +114,7 @@ public class BrandController {
      * @param size
      * @return
      */
-    @GetMapping(value = "/search/{page}/{size}?{searchMap}")
+    @GetMapping(value = "/search2/{page}/{size}")
     public Result findPage(@RequestParam Map searchMap, @PathVariable int page, @PathVariable int size) {
         Page<Brand> pageList = brandService.findPage(searchMap, page, size);
         PageResult pageResult = new PageResult(pageList.getTotal(), pageList.getResult());//查询总数与查询结果

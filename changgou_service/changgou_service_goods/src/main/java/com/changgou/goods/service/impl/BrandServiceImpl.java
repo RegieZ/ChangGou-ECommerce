@@ -99,6 +99,11 @@ public class BrandServiceImpl implements BrandService {
         // 用于封装查询条件
         Example.Criteria criteria = example.createCriteria();
         if (searchMap != null) {
+            // id
+            String id = (String) searchMap.get("id"); // 表中Integer类型的也用String接收
+            if (id != null) {
+                criteria.andEqualTo("id", id);
+            }
             // 品牌名称
             // 这两个条件用StringUtils.isNotEmpty(name)也可以判断
             String name = (String) searchMap.get("name");
@@ -109,11 +114,6 @@ public class BrandServiceImpl implements BrandService {
             String letter = (String) searchMap.get("letter");
             if (letter != null && !"".equals(letter)) {
                 criteria.andEqualTo("letter", letter);
-            }
-            // id
-            String id = (String) searchMap.get("id");
-            if (id != null) {
-                criteria.andEqualTo("id", id);
             }
         }
         return example;
