@@ -19,6 +19,11 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
+    /**
+     * 查询所有品牌
+     *
+     * @return
+     */
     @GetMapping("/findAll")
     public Result findAll() {
         List<Brand> brandList = brandService.findAll();
