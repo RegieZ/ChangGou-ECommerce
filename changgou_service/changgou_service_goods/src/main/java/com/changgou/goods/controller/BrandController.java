@@ -27,6 +27,7 @@ public class BrandController {
 
     /***
      * 根据ID查询品牌数据
+     *
      * @param id
      * @return
      */
@@ -38,6 +39,7 @@ public class BrandController {
 
     /***
      * 新增品牌数据
+     *
      * @param brand
      * @return
      */
@@ -49,6 +51,7 @@ public class BrandController {
 
     /***
      * 修改品牌数据
+     *
      * @param brand
      * @param id
      * @return
@@ -62,6 +65,7 @@ public class BrandController {
 
     /***
      * 根据ID删除品牌数据
+     *
      * @param id
      * @return
      */
@@ -73,6 +77,7 @@ public class BrandController {
 
     /***
      * 多条件搜索品牌数据
+     *
      * @param searchMap
      * @return
      */
@@ -84,6 +89,7 @@ public class BrandController {
 
     /***
      * 分页搜索实现
+     *
      * @param page 第几页
      * @param size 每页个数
      * @return
@@ -97,6 +103,7 @@ public class BrandController {
 
     /***
      * 分页搜索实现
+     *
      * @param searchMap
      * @param page
      * @param size

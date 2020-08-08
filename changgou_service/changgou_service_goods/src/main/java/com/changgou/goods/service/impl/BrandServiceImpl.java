@@ -31,6 +31,10 @@ public class BrandServiceImpl implements BrandService {
      */
     @Override
     public Brand findById(Integer id) {
+        //模拟异常
+        if (id == 0) {
+            throw new RuntimeException("ID不能为0");
+        }
         return brandMapper.selectByPrimaryKey(id);
     }
 
