@@ -43,4 +43,17 @@ public class BrandController {
         brandService.add(brand);
         return new Result(true,StatusCode.OK,"添加成功");
     }
+
+    /***
+     * 修改品牌数据
+     * @param brand
+     * @param id
+     * @return
+     */
+    @PutMapping(value="/update/{id}")
+    public Result update(@RequestBody Brand brand,@PathVariable Integer id){
+        brand.setId(id);
+        brandService.update(brand);
+        return new Result(true,StatusCode.OK,"修改成功");
+    }
 }

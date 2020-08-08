@@ -24,4 +24,10 @@ public interface BrandService {
      * @param brand
      */
     public void add(Brand brand);
+
+    /***
+     * 修改品牌数据
+     * @param brand
+     */
+    public void update(Brand brand);
 }

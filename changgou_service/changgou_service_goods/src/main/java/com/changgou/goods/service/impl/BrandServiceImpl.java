@@ -37,4 +37,13 @@ public class BrandServiceImpl implements BrandService {
     public void add(Brand brand){
         brandMapper.insertSelective(brand);
     }
+
+    /**
+     * 修改
+     * @param brand
+     */
+    @Override
+    public void update(Brand brand){
+        brandMapper.updateByPrimaryKeySelective(brand);
+    }
 }
