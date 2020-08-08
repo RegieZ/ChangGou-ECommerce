@@ -41,7 +41,8 @@ public class BrandServiceImpl implements BrandService {
      */
     @Override
     public void add(Brand brand) {
-        brandMapper.insertSelective(brand);
+        //brandMapper.insert(brand); //全部字段参与的sql拼接
+        brandMapper.insertSelective(brand); //有值参与的sql拼接
     }
 
     /**
@@ -83,16 +84,27 @@ public class BrandServiceImpl implements BrandService {
      * @return
      */
     private Example createExample(Map<String, Object> searchMap) {
+        // select * from tb_brand where name like %name% and letter = letter
+        // 构建查询对象
         Example example = new Example(Brand.class);
+        // 用于封装查询条件
         Example.Criteria criteria = example.createCriteria();
         if (searchMap != null) {
             // 品牌名称
-            if (searchMap.get("name") != null && !"".equals(searchMap.get("name"))) {
-                criteria.andLike("name", "%" + searchMap.get("name") + "%");
+            // 这两个条件用StringUtils.isNotEmpty(name)也可以判断
+            String name = (String) searchMap.get("name");
+            if (name != null && !"".equals(name)) {
+                criteria.andLike("name", "%" + name + "%");
             }
             // 品牌的首字母
-            if (searchMap.get("letter") != null && !"".equals(searchMap.get("letter"))) {
-                criteria.andEqualTo("letter", searchMap.get("letter"));
+            String letter = (String) searchMap.get("letter");
+            if (letter != null && !"".equals(letter)) {
+                criteria.andEqualTo("letter", letter);
+            }
+            // id
+            String id = (String) searchMap.get("id");
+            if (id != null) {
+                criteria.andEqualTo("id", id);
             }
         }
         return example;

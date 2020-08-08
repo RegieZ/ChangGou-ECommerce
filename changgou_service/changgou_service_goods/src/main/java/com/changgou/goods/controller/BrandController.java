@@ -84,8 +84,8 @@ public class BrandController {
 
     /***
      * 分页搜索实现
-     * @param page
-     * @param size
+     * @param page 第几页
+     * @param size 每页个数
      * @return
      */
     @GetMapping(value = "/search/{page}/{size}")
@@ -105,7 +105,7 @@ public class BrandController {
     @GetMapping(value = "/search/{page}/{size}?{searchMap}")
     public Result findPage(@RequestParam Map searchMap, @PathVariable int page, @PathVariable int size) {
         Page<Brand> pageList = brandService.findPage(searchMap, page, size);
-        PageResult pageResult = new PageResult(pageList.getTotal(), pageList.getResult());
+        PageResult pageResult = new PageResult(pageList.getTotal(), pageList.getResult());//查询总数与查询结果
         return new Result(true, StatusCode.OK, "查询成功", pageResult);
     }
 
