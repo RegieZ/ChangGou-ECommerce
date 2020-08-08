@@ -1,9 +1,11 @@
 package com.changgou.goods.controller;
 
+import com.changgou.entity.PageResult;
 import com.changgou.entity.Result;
 import com.changgou.entity.StatusCode;
 import com.changgou.goods.service.BrandService;
 import com.changgou.pojo.Brand;
+import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -78,5 +80,19 @@ public class BrandController {
     public Result findList(@RequestParam Map searchMap) {
         List<Brand> list = brandService.findList(searchMap);
         return new Result(true, StatusCode.OK, "查询成功", list);
+    }
+
+    /***
+     * 分页搜索实现
+     * @param searchMap
+     * @param page
+     * @param size
+     * @return
+     */
+    @GetMapping(value = "/search/{page}/{size}")
+    public Result findPage(@RequestParam Map searchMap, @PathVariable int page, @PathVariable int size) {
+        Page<Brand> pageList = brandService.findPage(page, size);
+        PageResult pageResult = new PageResult(pageList.getTotal(), pageList.getResult());
+        return new Result(true, StatusCode.OK, "查询成功", pageResult);
     }
 }
