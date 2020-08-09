@@ -64,6 +64,5 @@ public interface BrandService {
     Page<Brand> findPage(Map<String, Object> searchMap, int page, int size);
 
 
-
-
+    List<Brand> findByCateName(String cateName);
 }

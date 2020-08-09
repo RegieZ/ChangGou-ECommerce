@@ -30,6 +30,13 @@ public class Result<T> {
         this.message = "执行成功";
     }
 
+    public Result(String message, Object data) {
+        this.flag = true;
+        this.code = StatusCode.OK;
+        this.message = message;
+        this.data = (T)data;
+    }
+
     public boolean isFlag() {
         return flag;
     }
