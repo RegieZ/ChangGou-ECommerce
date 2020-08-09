@@ -105,6 +105,16 @@ public class SpecServiceImpl implements SpecService {
     }
 
     /**
+     * 根据商品分类名称查询规格列表
+     * @param cateName
+     * @return
+     */
+    @Override
+    public List<Spec> findByCateName(String cateName) {
+        return specMapper.findByCateName(cateName);
+    }
+
+    /**
      * 构建查询对象
      * @param searchMap
      * @return
