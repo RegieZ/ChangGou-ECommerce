@@ -3,17 +3,20 @@ spring:
     name: sysgateway
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]': # 匹配所有请求
+            allowedOrigins: "*" #跨域处理 允许所有的域
+            allowedMethods: # 支持的方法
+              - GET
+              - POST
+              - PUT
+              - DELETE
       routes:
         - id: goods
           uri: lb://goods
           predicates:
             - Path=/goods/**
-          filters:
-            - StripPrefix= 1
-        - id: system
-          uri: lb://system
-          predicates:
-            - Path=/system/**
           filters:
             - StripPrefix= 1
 server:
