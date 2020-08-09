@@ -19,8 +19,10 @@
 		<encoder>
 			<!-- 控制台输出带行号的，例如：2020-02-11 21:46:52  INFO [http-nio-9001-exec-10]
 			 at com.changgou.goods.service.impl.BrandServiceImpl.findById(BrandServiceImpl.java:42) - 查询品牌，品牌ID：1115 -->
-			<pattern>%d{yyyy-MM-dd HH:mm:ss,GMT+08:00} %5p [%t] 
-			%replace(%caller{1}){'\t|Caller.{1}0|\r\n', ''} - %m%n</pattern>
+			<!--<pattern>%d{yyyy-MM-dd HH:mm:ss,GMT+08:00} %5p [%t]
+			%replace(%caller{1}){'\t|Caller.{1}0|\r\n', ''} - %m%n</pattern>-->
+
+			<pattern>%d{yyyy-MM-dd HH:mm:ss,GMT+08:00} %5p [%t] [%C] - %m%n</pattern>
 		</encoder>
 	</appender>
 
