@@ -33,4 +33,23 @@ public class Test01 {
         Claims claims = Jwts.parser().setSigningKey("regino").parseClaimsJws(jwt).getBody();
         System.out.println(claims);
     }
+
+    @Test
+    public void test03() {
+        //当前时间
+        long currentTimeMillis = System.currentTimeMillis();
+        currentTimeMillis += 1000000L;
+        Date date = new Date(currentTimeMillis);
+        JwtBuilder builder = Jwts.builder()
+                .setId("888")   //设置唯一编号
+                .setSubject("小白")//设置主题，可以是JSON数据
+                .setIssuedAt(new Date())//设置签发日期
+                .setExpiration(date)//设置过期时间
+                .claim("roles", "admin")//设置角色
+                //可以设置多个
+                //.claim("username","reggie")
+                .signWith(SignatureAlgorithm.HS256, "regino");//设置签名，使用HS256算法，并设置SecretKey(字符串)
+        //构建 并返回一个字符串
+        System.out.println(builder.compact());
+    }
 }
