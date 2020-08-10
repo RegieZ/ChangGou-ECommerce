@@ -1,3 +1,4 @@
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -26,6 +27,10 @@ public class Test01 {
                 .setIssuedAt(new Date())//设置签发日期
                 .signWith(SignatureAlgorithm.HS256, "regino");//设置签名，使用HS256算法，并设置SecretKey(字符串)
         //构建，并返回一个字符串
-        System.out.println(builder.compact());
+        String jwt = builder.compact();
+        System.out.println(jwt);
+        //解析Token
+        Claims claims = Jwts.parser().setSigningKey("regino").parseClaimsJws(jwt).getBody();
+        System.out.println(claims);
     }
 }
