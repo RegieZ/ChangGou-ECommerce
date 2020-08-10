@@ -1,14 +1,17 @@
 package com.changgou.system.controller;
+
 import com.changgou.entity.PageResult;
 import com.changgou.entity.Result;
 import com.changgou.entity.StatusCode;
-import com.changgou.system.service.ResourceService;
 import com.changgou.system.pojo.Resource;
+import com.changgou.system.service.ResourceService;
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Map;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/resource")
@@ -20,12 +23,13 @@ public class ResourceController {
 
     /**
      * 查询全部数据
+     *
      * @return
      */
     @GetMapping
-    public Result findAll(){
+    public Result findAll() {
         List<Resource> resourceList = resourceService.findAll();
-        return new Result(true, StatusCode.OK,"查询成功",resourceList) ;
+        return new Result(true, StatusCode.OK, "查询成功", resourceList);
     }
 
     /***
@@ -34,9 +38,9 @@ public class ResourceController {
      * @return
      */
     @GetMapping("/{id}")
-    public Result findById(@PathVariable Integer id){
+    public Result findById(@PathVariable Integer id) {
         Resource resource = resourceService.findById(id);
-        return new Result(true,StatusCode.OK,"查询成功",resource);
+        return new Result(true, StatusCode.OK, "查询成功", resource);
     }
 
 
@@ -46,9 +50,9 @@ public class ResourceController {
      * @return
      */
     @PostMapping
-    public Result add(@RequestBody Resource resource){
+    public Result add(@RequestBody Resource resource) {
         resourceService.add(resource);
-        return new Result(true,StatusCode.OK,"添加成功");
+        return new Result(true, StatusCode.OK, "添加成功");
     }
 
 
@@ -58,11 +62,11 @@ public class ResourceController {
      * @param id
      * @return
      */
-    @PutMapping(value="/{id}")
-    public Result update(@RequestBody Resource resource,@PathVariable Integer id){
+    @PutMapping(value = "/{id}")
+    public Result update(@RequestBody Resource resource, @PathVariable Integer id) {
         resource.setId(id);
         resourceService.update(resource);
-        return new Result(true,StatusCode.OK,"修改成功");
+        return new Result(true, StatusCode.OK, "修改成功");
     }
 
 
@@ -71,10 +75,10 @@ public class ResourceController {
      * @param id
      * @return
      */
-    @DeleteMapping(value = "/{id}" )
-    public Result delete(@PathVariable Integer id){
+    @DeleteMapping(value = "/{id}")
+    public Result delete(@PathVariable Integer id) {
         resourceService.delete(id);
-        return new Result(true,StatusCode.OK,"删除成功");
+        return new Result(true, StatusCode.OK, "删除成功");
     }
 
     /***
@@ -82,10 +86,10 @@ public class ResourceController {
      * @param searchMap
      * @return
      */
-    @GetMapping(value = "/search" )
-    public Result findList(@RequestParam Map searchMap){
+    @GetMapping(value = "/search")
+    public Result findList(@RequestParam Map searchMap) {
         List<Resource> list = resourceService.findList(searchMap);
-        return new Result(true,StatusCode.OK,"查询成功",list);
+        return new Result(true, StatusCode.OK, "查询成功", list);
     }
 
 
@@ -96,11 +100,11 @@ public class ResourceController {
      * @param size
      * @return
      */
-    @GetMapping(value = "/search/{page}/{size}" )
-    public Result findPage(@RequestParam Map searchMap, @PathVariable  int page, @PathVariable  int size){
+    @GetMapping(value = "/search/{page}/{size}")
+    public Result findPage(@RequestParam Map searchMap, @PathVariable int page, @PathVariable int size) {
         Page<Resource> pageList = resourceService.findPage(searchMap, page, size);
-        PageResult pageResult=new PageResult(pageList.getTotal(),pageList.getResult());
-        return new Result(true,StatusCode.OK,"查询成功",pageResult);
+        PageResult pageResult = new PageResult(pageList.getTotal(), pageList.getResult());
+        return new Result(true, StatusCode.OK, "查询成功", pageResult);
     }
 
 

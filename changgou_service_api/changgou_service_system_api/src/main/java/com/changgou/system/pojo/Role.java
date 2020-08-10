@@ -6,34 +6,29 @@ import java.io.Serializable;
 
 /**
  * role实体类
- * @author 黑马架构师2.5
- *
  */
-@Table(name="tb_role")
+@Table(name = "tb_role")
 public class Role implements Serializable {
 
-	@Id
-	private Integer id;//ID
+    @Id
+    private Integer id;//ID
+    private String name;//角色名称
 
+    public Integer getId() {
+        return id;
+    }
 
-	
-	private String name;//角色名称
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-
+    public void setName(String name) {
+        this.name = name;
+    }
 
 
 }

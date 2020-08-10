@@ -103,5 +103,18 @@ public class AdminController {
         return new Result(true,StatusCode.OK,"查询成功",pageResult);
     }
 
-
+    /**
+     * 用户登录校验
+     * @param admin
+     * @return
+     */
+    @GetMapping("login")
+    public Result login(@RequestBody Admin admin){
+        boolean flag = adminService.login(admin);
+        if(flag){
+            return new Result("用户登录成功",null);
+        }else{
+            return new Result("用户登录失败，请重新登录",null);
+        }
+    }
 }
