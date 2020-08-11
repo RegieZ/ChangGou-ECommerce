@@ -101,7 +101,7 @@ public class SpuServiceImpl implements SpuService {
 
                 sku.setName(name);//名称
                 sku.setSpuId(spu.getId());//设置spu的ID
-                sku.setCreateTime(date);//创建日期
+                sku.setCreateTime(date);//创建日期，可以加判断是否修改，若无修改则不修改创建日期
                 sku.setUpdateTime(date);//修改日期
                 sku.setCategoryId(category.getId());//商品分类ID
                 sku.setCategoryName(category.getName());//商品分类名称
@@ -333,14 +333,14 @@ public class SpuServiceImpl implements SpuService {
     }
 
     @Override
-    public void update(Goods goods ) {
+    public void update(Goods goods) {
         //取出spu部分
         Spu spu = goods.getSpu();
         spuMapper.updateByPrimaryKey(spu);
         //删除原sku列表
-        Example example=new Example(Sku.class);
+        Example example = new Example(Sku.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("spuId",spu.getId());
+        criteria.andEqualTo("spuId", spu.getId());
         skuMapper.deleteByExample(example);
 
         saveSkuList(goods);//保存sku列表
