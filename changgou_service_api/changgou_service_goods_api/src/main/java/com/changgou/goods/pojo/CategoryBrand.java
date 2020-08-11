@@ -7,11 +7,12 @@ import java.io.Serializable;
 @Table(name = "tb_category_brand")
 public class CategoryBrand implements Serializable {
 
+    //不建议使用基本int类型，由于默认值是0，建议使用包装类Integer
     @Id
-    private Integer category_id; //categoryId也可以解析出来，不过有时会出错，需要修改SpuServiceImpl中的变量
+    private Integer category_id; //驼峰命名categoryId也可以解析出来，不过有时会出错，需要修改SpuServiceImpl中的变量
 
     @Id
-    private Integer brand_id; //brandId也可以解析出来，不过有时会出错，需要修改SpuServiceImpl中的变量
+    private Integer brand_id; //驼峰命名brandId也可以解析出来，不过有时会出错，需要修改SpuServiceImpl中的变量
 
     public Integer getCategory_id() {
         return category_id;
