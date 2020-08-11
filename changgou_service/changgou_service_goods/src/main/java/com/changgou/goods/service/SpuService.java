@@ -71,5 +71,11 @@ public interface SpuService {
      */
     void add(Goods goods);
 
-
+    /**
+     * 根据ID查询商品
+     *
+     * @param id
+     * @return
+     */
+    public Goods findGoodsById(String id);
 }
