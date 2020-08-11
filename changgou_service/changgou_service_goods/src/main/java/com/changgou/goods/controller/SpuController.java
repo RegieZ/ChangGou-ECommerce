@@ -120,4 +120,16 @@ public class SpuController {
         spuService.update(goods);
         return new Result(true, StatusCode.OK, "修改成功");
     }
+
+    /**
+     * 审核
+     *
+     * @param id
+     * @return
+     */
+    @PutMapping("/audit/{id}")
+    public Result audit(@PathVariable String id) {
+        spuService.audit(id);
+        return new Result();
+    }
 }

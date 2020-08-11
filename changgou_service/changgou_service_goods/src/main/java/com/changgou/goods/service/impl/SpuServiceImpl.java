@@ -345,4 +345,15 @@ public class SpuServiceImpl implements SpuService {
 
         saveSkuList(goods);//保存sku列表
     }
+
+    /**
+     * 审核
+     *
+     * @param id
+     */
+    public void audit(String id) {
+        Spu spu = spuMapper.selectByPrimaryKey(id);
+        spu.setStatus("1");//已审核
+        spuMapper.updateByPrimaryKeySelective(spu);
+    }
 }
