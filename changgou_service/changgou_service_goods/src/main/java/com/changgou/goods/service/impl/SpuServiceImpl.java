@@ -370,9 +370,15 @@ public class SpuServiceImpl implements SpuService {
      * @param id
      */
     public void pull(String id) {
+        /*//方式一
         Spu spu = spuMapper.selectByPrimaryKey(id);
         spu.setIsMarketable("0");//下架状态
-        spuMapper.updateByPrimaryKeySelective(spu);
+        spuMapper.updateByPrimaryKeySelective(spu);*/
+        //方式二（建议）
+        Spu spu1 = new Spu();
+        spu1.setId(id);
+        spu1.setIsMarketable("0");
+        spuMapper.updateByPrimaryKeySelective(spu1);
     }
 
     /**
