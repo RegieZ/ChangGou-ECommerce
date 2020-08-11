@@ -356,4 +356,15 @@ public class SpuServiceImpl implements SpuService {
         spu.setStatus("1");//已审核
         spuMapper.updateByPrimaryKeySelective(spu);
     }
+
+    /**
+     * 下架商品
+     *
+     * @param id
+     */
+    public void pull(String id) {
+        Spu spu = spuMapper.selectByPrimaryKey(id);
+        spu.setIsMarketable("0");//下架状态
+        spuMapper.updateByPrimaryKeySelective(spu);
+    }
 }

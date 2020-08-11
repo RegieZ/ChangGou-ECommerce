@@ -92,4 +92,11 @@ public interface SpuService {
      * @param id
      */
     public void audit(String id);
+
+    /**
+     * 下架商品
+     *
+     * @param id
+     */
+    public void pull(String id);
 }
