@@ -144,4 +144,16 @@ public class SpuController {
         spuService.pull(id);
         return new Result();
     }
+
+    /**
+     * 上架
+     *
+     * @param id
+     * @return
+     */
+    @PutMapping("/put/{id}")
+    public Result put(@PathVariable String id) {
+        spuService.put(id);
+        return new Result();
+    }
 }

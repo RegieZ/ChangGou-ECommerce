@@ -99,4 +99,11 @@ public interface SpuService {
      * @param id
      */
     public void pull(String id);
+
+    /**
+     * 上架商品
+     *
+     * @param id
+     */
+    public void put(String id);
 }
