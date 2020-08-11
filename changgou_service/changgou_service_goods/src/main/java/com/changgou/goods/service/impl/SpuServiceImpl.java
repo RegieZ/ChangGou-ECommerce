@@ -406,4 +406,15 @@ public class SpuServiceImpl implements SpuService {
         spu.setStatus("0");//未审核
         spuMapper.updateByPrimaryKeySelective(spu);
     }
+
+    @Override
+    public void realDelete(String id) {
+        Spu spu = spuMapper.selectByPrimaryKey(id);
+        //检查是否删除的商品
+        if (!spu.getIsDelete().equals("1")) {
+            throw new RuntimeException("此商品未删除！");
+        }
+        spuMapper.deleteByPrimaryKey(id);
+
+    }
 }

@@ -113,4 +113,11 @@ public interface SpuService {
      * @param id
      */
     public void restore(String id);
+
+    /**
+     * 物理删除
+     *
+     * @param id
+     */
+    public void realDelete(String id);
 }

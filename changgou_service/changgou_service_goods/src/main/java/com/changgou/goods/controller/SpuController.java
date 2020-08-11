@@ -168,4 +168,16 @@ public class SpuController {
         spuService.restore(id);
         return new Result();
     }
+
+    /**
+     * 物理删除
+     *
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/realDelete/{id}")
+    public Result realDelete(@PathVariable String id) {
+        spuService.realDelete(id);
+        return new Result();
+    }
 }
