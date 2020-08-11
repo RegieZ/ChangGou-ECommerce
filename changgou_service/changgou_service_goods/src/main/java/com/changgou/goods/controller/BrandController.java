@@ -17,7 +17,6 @@ import java.util.Map;
 @RequestMapping("/brand")
 public class BrandController {
 
-
     @Autowired
     private BrandService brandService;
 
@@ -109,12 +108,13 @@ public class BrandController {
 
     /**
      * 根据分类名称查询品牌列表
+     *
      * @param cateName
      * @return
      */
     @GetMapping("cate/{cateName}")
     public Result findByCateName(@PathVariable String cateName) {
         List<Brand> brandList = brandService.findByCateName(cateName);
-        return new Result("查询品牌列表成功",brandList);
+        return new Result("查询品牌列表成功", brandList);
     }
 }

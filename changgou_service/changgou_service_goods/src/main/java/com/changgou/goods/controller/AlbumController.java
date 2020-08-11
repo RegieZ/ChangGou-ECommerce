@@ -1,31 +1,34 @@
 package com.changgou.goods.controller;
+
 import com.changgou.entity.PageResult;
 import com.changgou.entity.Result;
 import com.changgou.entity.StatusCode;
-import com.changgou.goods.service.AlbumService;
 import com.changgou.goods.pojo.Album;
+import com.changgou.goods.service.AlbumService;
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Map;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/album")
 public class AlbumController {
-
 
     @Autowired
     private AlbumService albumService;
 
     /**
      * 查询全部数据
+     *
      * @return
      */
     @GetMapping
-    public Result findAll(){
+    public Result findAll() {
         List<Album> albumList = albumService.findAll();
-        return new Result(true, StatusCode.OK,"查询成功",albumList) ;
+        return new Result(true, StatusCode.OK, "查询成功", albumList);
     }
 
     /***
@@ -34,9 +37,9 @@ public class AlbumController {
      * @return
      */
     @GetMapping("/{id}")
-    public Result findById(@PathVariable Long id){
+    public Result findById(@PathVariable Long id) {
         Album album = albumService.findById(id);
-        return new Result(true,StatusCode.OK,"查询成功",album);
+        return new Result(true, StatusCode.OK, "查询成功", album);
     }
 
 
@@ -46,9 +49,9 @@ public class AlbumController {
      * @return
      */
     @PostMapping
-    public Result add(@RequestBody Album album){
+    public Result add(@RequestBody Album album) {
         albumService.add(album);
-        return new Result(true,StatusCode.OK,"添加成功");
+        return new Result(true, StatusCode.OK, "添加成功");
     }
 
 
@@ -58,11 +61,11 @@ public class AlbumController {
      * @param id
      * @return
      */
-    @PutMapping(value="/{id}")
-    public Result update(@RequestBody Album album,@PathVariable Long id){
+    @PutMapping(value = "/{id}")
+    public Result update(@RequestBody Album album, @PathVariable Long id) {
         album.setId(id);
         albumService.update(album);
-        return new Result(true,StatusCode.OK,"修改成功");
+        return new Result(true, StatusCode.OK, "修改成功");
     }
 
 
@@ -71,10 +74,10 @@ public class AlbumController {
      * @param id
      * @return
      */
-    @DeleteMapping(value = "/{id}" )
-    public Result delete(@PathVariable Long id){
+    @DeleteMapping(value = "/{id}")
+    public Result delete(@PathVariable Long id) {
         albumService.delete(id);
-        return new Result(true,StatusCode.OK,"删除成功");
+        return new Result(true, StatusCode.OK, "删除成功");
     }
 
     /***
@@ -82,10 +85,10 @@ public class AlbumController {
      * @param searchMap
      * @return
      */
-    @GetMapping(value = "/search" )
-    public Result findList(@RequestParam Map searchMap){
+    @GetMapping(value = "/search")
+    public Result findList(@RequestParam Map searchMap) {
         List<Album> list = albumService.findList(searchMap);
-        return new Result(true,StatusCode.OK,"查询成功",list);
+        return new Result(true, StatusCode.OK, "查询成功", list);
     }
 
 
@@ -96,11 +99,11 @@ public class AlbumController {
      * @param size
      * @return
      */
-    @GetMapping(value = "/search/{page}/{size}" )
-    public Result findPage(@RequestParam Map searchMap, @PathVariable  int page, @PathVariable  int size){
+    @GetMapping(value = "/search/{page}/{size}")
+    public Result findPage(@RequestParam Map searchMap, @PathVariable int page, @PathVariable int size) {
         Page<Album> pageList = albumService.findPage(searchMap, page, size);
-        PageResult pageResult=new PageResult(pageList.getTotal(),pageList.getResult());
-        return new Result(true,StatusCode.OK,"查询成功",pageResult);
+        PageResult pageResult = new PageResult(pageList.getTotal(), pageList.getResult());
+        return new Result(true, StatusCode.OK, "查询成功", pageResult);
     }
 
 
