@@ -331,4 +331,18 @@ public class SpuServiceImpl implements SpuService {
         goods.setSkuList(skuList);
         return goods;
     }
+
+    @Override
+    public void update(Goods goods ) {
+        //取出spu部分
+        Spu spu = goods.getSpu();
+        spuMapper.updateByPrimaryKey(spu);
+        //删除原sku列表
+        Example example=new Example(Sku.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("spuId",spu.getId());
+        skuMapper.deleteByExample(example);
+
+        saveSkuList(goods);//保存sku列表
+    }
 }

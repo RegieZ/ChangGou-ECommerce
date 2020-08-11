@@ -78,4 +78,11 @@ public interface SpuService {
      * @return
      */
     public Goods findGoodsById(String id);
+
+    /**
+     * 修改数据
+     *
+     * @param goods
+     */
+    void update(Goods goods);
 }
