@@ -156,4 +156,16 @@ public class SpuController {
         spuService.put(id);
         return new Result();
     }
+
+    /**
+     * 恢复数据
+     *
+     * @param id
+     * @return
+     */
+    @PutMapping("/restore/{id}")
+    public Result restore(@PathVariable String id) {
+        spuService.restore(id);
+        return new Result();
+    }
 }

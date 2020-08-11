@@ -106,4 +106,11 @@ public interface SpuService {
      * @param id
      */
     public void put(String id);
+
+    /**
+     * 恢复数据
+     *
+     * @param id
+     */
+    public void restore(String id);
 }
