@@ -1,4 +1,4 @@
-package com.changgou.pojo;
+package com.changgou.search.pojo;
 
 public class FastDFSFile {
 

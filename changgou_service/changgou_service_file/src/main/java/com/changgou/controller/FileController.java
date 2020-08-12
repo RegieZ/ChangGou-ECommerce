@@ -1,7 +1,7 @@
 package com.changgou.controller;
 
 import com.changgou.entity.Result;
-import com.changgou.pojo.FastDFSFile;
+import com.changgou.search.pojo.FastDFSFile;
 import com.changgou.util.FastDFSClient;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
