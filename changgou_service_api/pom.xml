@@ -19,7 +19,6 @@
         <module>changgou_service_system_api</module>
         <module>changgou_service_user_api</module>
         <module>changgou_service_seckill_api</module>
-        <module>chaggou_service_search_api</module>
         <module>changgou_service_search_api</module>
     </modules>
 
