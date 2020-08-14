@@ -26,9 +26,9 @@ public class SkuController {
      * @return
      */
     @GetMapping
-    public Result findAll() {
-        List<Sku> skuList = skuService.findAll();
-        return new Result(true, StatusCode.OK, "查询成功", skuList);
+    public List<Sku> findAll() {
+        return skuService.findAll();
+        //return new Result(true, StatusCode.OK,"查询成功",skuList) ;
     }
 
     /***
@@ -105,6 +105,4 @@ public class SkuController {
         PageResult pageResult = new PageResult(pageList.getTotal(), pageList.getResult());
         return new Result(true, StatusCode.OK, "查询成功", pageResult);
     }
-
-
 }
