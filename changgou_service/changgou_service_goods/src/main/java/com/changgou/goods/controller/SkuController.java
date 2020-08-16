@@ -91,7 +91,6 @@ public class SkuController {
         return new Result(true, StatusCode.OK, "查询成功", list);
     }
 
-
     /***
      * 分页搜索实现
      * @param searchMap
@@ -104,5 +103,16 @@ public class SkuController {
         Page<Sku> pageList = skuService.findPage(searchMap, page, size);
         PageResult pageResult = new PageResult(pageList.getTotal(), pageList.getResult());
         return new Result(true, StatusCode.OK, "查询成功", pageResult);
+    }
+
+    /**
+     * 根据spuId查询skuList
+     *
+     * @param spuId
+     * @return
+     */
+    @GetMapping("findBySquId/{spuId}")
+    public List<Sku> findBySpuId(@PathVariable String spuId) {
+        return skuService.findBySpuId(spuId);
     }
 }

@@ -35,6 +35,19 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     /**
+     * 根据spuId导入sku数据成功
+     *
+     * @param spuId
+     */
+    @Override
+    public void importBySqpuId(String spuId) {
+        //根据spuId查询skuList
+        List<Sku> skuList = skuFeign.findBySpuId(spuId);
+        //保存
+        saveSkuList(skuList, System.currentTimeMillis());
+    }
+
+    /**
      * 保存skuList
      *
      * @param skuList

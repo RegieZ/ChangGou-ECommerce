@@ -105,6 +105,19 @@ public class SkuServiceImpl implements SkuService {
     }
 
     /**
+     * 根据spuId查询skuList
+     *
+     * @param spuId
+     * @return
+     */
+    @Override
+    public List<Sku> findBySpuId(String spuId) {
+        Sku sku = new Sku();
+        sku.setSpuId(spuId);
+        return skuMapper.select(sku);
+    }
+
+    /**
      * 构建查询对象
      * @param searchMap
      * @return
