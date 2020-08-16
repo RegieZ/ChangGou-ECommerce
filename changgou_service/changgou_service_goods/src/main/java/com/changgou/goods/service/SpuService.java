@@ -108,6 +108,13 @@ public interface SpuService {
     public void put(String id);
 
     /**
+     * 上架商品
+     *
+     * @param spuId
+     */
+    public void pushGoods(String spuId);
+
+    /**
      * 恢复数据
      *
      * @param id

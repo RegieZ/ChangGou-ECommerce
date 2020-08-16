@@ -12,5 +12,5 @@ public interface ManagerService {
      *
      * @param spuId
      */
-    void importBySqpuId(String spuId);
+    void importBySpuId(String spuId);
 }

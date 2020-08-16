@@ -7,6 +7,7 @@ import com.changgou.goods.service.SpuService;
 import com.changgou.util.IdWorker;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +37,9 @@ public class SpuServiceImpl implements SpuService {
 
     @Autowired
     private CategoryBrandMapper categoryBrandMapper;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     /**
      * 保存商品 SPU+SKU列表
@@ -397,6 +401,35 @@ public class SpuServiceImpl implements SpuService {
     }
 
     /**
+     * 上架商品
+     *
+     * @param spuId
+     */
+    @Override
+    public void pushGoods(String spuId) {
+        //1.根据spuId查询spu
+        Spu spu = spuMapper.selectByPrimaryKey(spuId);
+        //2.判断商品审核状态是否通过
+        if (!spu.getStatus().equals("1")) {
+            //3.商品未审核通过则抛出异常---》未审核商品不允许上架
+            throw new RuntimeException("未审核商品不允许上架");
+        }
+        //4.商品审核通过则设置上架状态为1 更新
+        //spu.setIsMarketable("1");
+
+        //5.优化后
+        Spu spu1 = new Spu();
+        spu1.setId(spuId);
+        //商品审核通过则设置上架状态为1 更新
+        spu1.setIsMarketable("1");
+
+        spuMapper.updateByPrimaryKeySelective(spu1);
+
+        //6.商品上架成功发送mq消息
+        rabbitTemplate.convertAndSend("goods_up_exchange", "", spuId);
+    }
+
+    /**
      * 恢复数据
      *
      * @param id
@@ -421,6 +454,5 @@ public class SpuServiceImpl implements SpuService {
             throw new RuntimeException("此商品未删除！");
         }
         spuMapper.deleteByPrimaryKey(id);
-
     }
 }

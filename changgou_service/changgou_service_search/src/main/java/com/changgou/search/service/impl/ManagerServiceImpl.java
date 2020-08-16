@@ -40,7 +40,7 @@ public class ManagerServiceImpl implements ManagerService {
      * @param spuId
      */
     @Override
-    public void importBySqpuId(String spuId) {
+    public void importBySpuId(String spuId) {
         //根据spuId查询skuList
         List<Sku> skuList = skuFeign.findBySpuId(spuId);
         //保存
