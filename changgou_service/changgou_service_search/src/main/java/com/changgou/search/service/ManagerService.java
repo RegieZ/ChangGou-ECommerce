@@ -13,4 +13,11 @@ public interface ManagerService {
      * @param spuId
      */
     void importBySpuId(String spuId);
+
+    /**
+     * 根据spuId删除sku数据
+     *
+     * @param spuId
+     */
+    void deleteBySpuId(String spuId);
 }

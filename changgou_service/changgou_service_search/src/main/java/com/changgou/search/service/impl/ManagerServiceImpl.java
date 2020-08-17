@@ -48,6 +48,16 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     /**
+     * 根据spuId删除sku索引库数据
+     *
+     * @param spuId
+     */
+    @Override
+    public void deleteBySpuId(String spuId) {
+        skuInfoMapper.deleteBySpuId(spuId);
+    }
+
+    /**
      * 保存skuList
      *
      * @param skuList
